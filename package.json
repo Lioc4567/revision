@@ -1,0 +1,23 @@
+{
+  "name": "english-quiz-multiplayer",
+  "version": "1.0.0",
+  "description": "Jeu de révision d'anglais multijoueur en temps réel (Socket.io)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["english", "quiz", "multiplayer", "socket.io", "revision"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "sheets": [
+    {
+      "id": "present_perfect_simple",
+      "title": "Present Perfect Simple",
+      "color": "#4ecca3",
+      "formula": "Subject + have/has + past participle",
+      "usage": [
+        "Une action passée dont on ne précise pas le moment (lien avec le présent)",
+        "Une expérience de vie (ever, never)",
+        "Une action récente avec conséquence présente (just, already, yet)",
+        "Une situation qui a commencé dans le passé et continue (for, since)"
+      ],
+      "keywords": ["just", "already", "yet", "ever", "never", "for", "since", "recently", "so far", "up to now"],
+      "examples": [
+        { "en": "I have just finished my homework.", "fr": "Je viens de finir mes devoirs." },
+        { "en": "She has already eaten breakfast.", "fr": "Elle a déjà pris son petit-déjeuner." },
+        { "en": "Have you ever been to Japan?", "fr": "Es-tu jamais allé au Japon ?" },
+        { "en": "He hasn't called yet.", "fr": "Il n'a pas encore appelé." },
+        { "en": "They have lived here for ten years.", "fr": "Ils vivent ici depuis dix ans." },
+        { "en": "We have known each other since 2010.", "fr": "Nous nous connaissons depuis 2010." }
+      ],
+      "negative": "Subject + haven't/hasn't + past participle",
+      "question": "Have/Has + subject + past participle ?"
+    },
+    {
+      "id": "present_perfect_continuous",
+      "title": "Present Perfect Continuous",
+      "color": "#a8e6cf",
+      "formula": "Subject + have/has + been + verb-ing",
+      "usage": [
+        "Insiste sur la DURÉE d'une action qui a commencé dans le passé et continue",
+        "Action récemment terminée dont on voit le résultat",
+        "Souvent utilisé avec for et since"
+      ],
+      "keywords": ["for", "since", "all day", "all morning", "lately", "recently"],
+      "examples": [
+        { "en": "I have been studying for 3 hours.", "fr": "J'étudie depuis 3 heures (et ça continue)." },
+        { "en": "She has been waiting since noon.", "fr": "Elle attend depuis midi." },
+        { "en": "It has been raining all day.", "fr": "Il pleut toute la journée." },
+        { "en": "He looks tired. He has been working all night.", "fr": "Il a l'air fatigué. Il a travaillé toute la nuit." }
+      ]
+    },
+    {
+      "id": "pp_vs_past_simple",
+      "title": "Present Perfect vs Past Simple",
+      "color": "#ffd93d",
+      "rules": [
+        {
+          "tense": "Past Simple",
+          "when": "Action terminée à un MOMENT PRÉCIS dans le passé",
+          "signals": ["yesterday", "last night/week/year", "in 2020", "ago", "when", "in the morning", "at 5 pm"],
+          "example_en": "I went to London last year.",
+          "example_fr": "Je suis allé à Londres l'année dernière."
+        },
+        {
+          "tense": "Present Perfect",
+          "when": "Action passée SANS moment précis, ou avec lien avec le présent",
+          "signals": ["just", "already", "yet", "ever", "never", "recently", "for", "since"],
+          "example_en": "I have been to London (recently).",
+          "example_fr": "Je suis allé à Londres (récemment)."
+        }
+      ],
+      "comparison": [
+        { "past_simple": "She went to Paris yesterday.", "present_perfect": "She has been to Paris (but we don't know when)." },
+        { "past_simple": "Did you see that film last week?", "present_perfect": "Have you ever seen that film?" },
+        { "past_simple": "I lost my keys this morning (at 8am).", "present_perfect": "I have lost my keys! (and I still can't find them)" }
+      ]
+    },
+    {
+      "id": "been_vs_gone",
+      "title": "Been to vs Gone to",
+      "color": "#ff6b6b",
+      "rules": [
+        {
+          "form": "has/have BEEN to",
+          "meaning": "Est allé(e) ET est revenu(e)",
+          "example_en": "She has been to New York. (She's back now.)",
+          "example_fr": "Elle est allée à New York. (Elle est revenue.)"
+        },
+        {
+          "form": "has/have GONE to",
+          "meaning": "Est allé(e) et n'est PAS encore revenu(e)",
+          "example_en": "She has gone to New York. (She's still there.)",
+          "example_fr": "Elle est allée à New York. (Elle y est encore.)"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "g1",
+      "category": "grammar",
+      "question": "Complete with the correct form: She ___ (finish) her homework. (Use Present Perfect)",
+      "answer": "has finished",
+      "explanation": "3rd person singular → has + past participle of 'finish' → has finished"
+    },
+    {
+      "id": "g2",
+      "category": "grammar",
+      "question": "Translate using Present Perfect: 'Je viens de manger.'",
+      "answer": "I have just eaten",
+      "explanation": "'Venir de' = Present Perfect + just. 'just' se place entre have et le participe."
+    },
+    {
+      "id": "g3",
+      "category": "grammar",
+      "question": "Complete: They ___ (live) here for 10 years. (They still live here)",
+      "answer": "have lived",
+      "explanation": "Action qui a commencé dans le passé et continue → Present Perfect avec 'for'"
+    },
+    {
+      "id": "g4",
+      "category": "grammar",
+      "question": "Complete: I ___ (not/see) him yet. (Use Present Perfect)",
+      "answer": "haven't seen",
+      "explanation": "'Yet' utilise toujours la forme négative ou interrogative du Present Perfect."
+    },
+    {
+      "id": "g5",
+      "category": "grammar",
+      "question": "Complete: ___ you ever ___ (visit) the Eiffel Tower?",
+      "answer": "Have / visited",
+      "explanation": "Question au Present Perfect avec 'ever' → Have + subject + past participle"
+    },
+    {
+      "id": "g6",
+      "category": "grammar",
+      "question": "Complete: She ___ (study) for 3 hours and she's still studying. (Emphasize duration)",
+      "answer": "has been studying",
+      "explanation": "On insiste sur la durée en cours → Present Perfect Continuous: has been + verb-ing"
+    },
+    {
+      "id": "g7",
+      "category": "grammar",
+      "question": "Which is correct? 'I have seen him yesterday.' OR 'I saw him yesterday.'",
+      "answer": "I saw him yesterday",
+      "explanation": "'Yesterday' est un indicateur de temps précis → Past Simple obligatoire. Le Present Perfect ne s'utilise JAMAIS avec 'yesterday', 'last week', 'ago', etc."
+    },
+    {
+      "id": "g8",
+      "category": "grammar",
+      "question": "Translate: 'Il a déjà mangé.' (Use Present Perfect)",
+      "answer": "He has already eaten",
+      "explanation": "'Déjà' en contexte Present Perfect = 'already'. Se place entre has/have et le participe."
+    },
+    {
+      "id": "g9",
+      "category": "grammar",
+      "question": "Complete: I ___ (wait) since 9 o'clock! (I am still waiting now)",
+      "answer": "have been waiting",
+      "explanation": "Durée continue depuis un moment précis (since) → Present Perfect Continuous"
+    },
+    {
+      "id": "g10",
+      "category": "grammar",
+      "question": "Complete: We ___ (never/try) sushi before.",
+      "answer": "have never tried",
+      "explanation": "Expérience de vie avec 'never' → Present Perfect: have + never + past participle"
+    }
+  ]
+}

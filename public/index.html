@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>🎓 EnglishQuiz — Révision Multijoueur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     NAV BAR
+══════════════════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">🎓 EnglishQuiz</div>
+  <div class="nav-actions">
+    <button class="btn-nav" id="btn-open-sheets" title="Fiches de révision">📖 Fiches</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: HOME
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-home" class="view active">
+  <div class="hero">
+    <div class="hero-icon">🎯</div>
+    <h1>EnglishQuiz</h1>
+    <p class="hero-subtitle">Révise l'anglais avec tes amis, en temps réel !</p>
+  </div>
+  <div class="card-container">
+    <div class="card card-host" id="card-create">
+      <div class="card-icon">👑</div>
+      <h2>Créer une partie</h2>
+      <p>Lance un salon et invite tes amis</p>
+      <div class="form-group">
+        <input type="text" id="host-pseudo" placeholder="Ton pseudo" maxlength="20" autocomplete="off" />
+      </div>
+      <button class="btn btn-primary btn-xl" id="btn-create">Créer la partie</button>
+    </div>
+    <div class="card-divider">ou</div>
+    <div class="card card-player" id="card-join">
+      <div class="card-icon">🎮</div>
+      <h2>Rejoindre</h2>
+      <p>Entre le code de la salle</p>
+      <div class="form-group">
+        <input type="text" id="join-pseudo" placeholder="Ton pseudo" maxlength="20" autocomplete="off" />
+        <input type="text" id="join-code" placeholder="Code (ex: AB3K)" maxlength="4" autocomplete="off" class="code-input" />
+      </div>
+      <button class="btn btn-secondary btn-xl" id="btn-join">Rejoindre</button>
+      <div class="error-msg" id="join-error"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: LOBBY HOST
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-lobby-host" class="view">
+  <div class="view-header">
+    <h1>🏠 Salon de jeu</h1>
+    <div class="room-code-display">
+      <span class="label">Code de la salle :</span>
+      <div class="code-badge" id="display-room-code">----</div>
+      <button class="btn-copy" id="btn-copy-code" title="Copier le code">📋</button>
+    </div>
+    <p class="hint-text">Partage ce code avec tes amis !</p>
+  </div>
+
+  <div class="config-panel">
+    <h3>⚙️ Configuration</h3>
+    <div class="config-row">
+      <label>Catégorie :</label>
+      <select id="select-category">
+        <option value="irregular_verbs">📝 Verbes irréguliers</option>
+        <option value="vocabulary">🔤 Vocabulaire thématique</option>
+        <option value="grammar">📐 Grammaire (Present Perfect)</option>
+        <option value="traps">⚠️ Pièges d'examen</option>
+      </select>
+    </div>
+    <div class="config-row">
+      <label>Durée par question :</label>
+      <select id="select-duration">
+        <option value="30">30 secondes</option>
+        <option value="60" selected>60 secondes</option>
+        <option value="90">90 secondes</option>
+        <option value="120">2 minutes</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="players-panel">
+    <h3>👥 Joueurs <span id="lobby-player-count">(0)</span></h3>
+    <ul class="players-list" id="lobby-players-list"></ul>
+  </div>
+
+  <div class="lobby-actions">
+    <button class="btn btn-primary btn-xl" id="btn-start-game">🚀 Lancer la partie !</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: LOBBY PLAYER
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-lobby-player" class="view">
+  <div class="view-header">
+    <h1>⏳ Salle d'attente</h1>
+    <div class="room-code-display">
+      <span class="label">Salon :</span>
+      <div class="code-badge" id="display-room-code-player">----</div>
+    </div>
+    <div class="waiting-animation">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <p>En attente de l'hôte pour lancer la partie…</p>
+  </div>
+  <div class="players-panel">
+    <h3>👥 Joueurs connectés</h3>
+    <ul class="players-list" id="waiting-players-list"></ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: HOST DASHBOARD
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-host-dashboard" class="view">
+  <div class="view-header">
+    <h2>👑 Tableau de Bord — Hôte</h2>
+    <div class="score-bar" id="host-score-bar"></div>
+  </div>
+
+  <!-- Question panel -->
+  <div class="card question-editor">
+    <h3>📋 Question</h3>
+    <div class="category-selector">
+      <label>Catégorie :</label>
+      <select id="game-category">
+        <option value="irregular_verbs">📝 Verbes irréguliers</option>
+        <option value="vocabulary">🔤 Vocabulaire thématique</option>
+        <option value="grammar">📐 Grammaire</option>
+        <option value="traps">⚠️ Pièges</option>
+      </select>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="btn-generate-question">🎲 Générer une question</button>
+    </div>
+
+    <div class="form-group">
+      <label>Question :</label>
+      <textarea id="input-question" rows="3" placeholder="Rédige ta question ici ou génères-en une automatiquement…"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Réponse correcte :</label>
+        <input type="text" id="input-answer" placeholder="Réponse attendue" />
+      </div>
+      <div class="form-group">
+        <label>Indice (optionnel) :</label>
+        <input type="text" id="input-hint" placeholder="Ex: forme du verbe..." />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Explication (après validation) :</label>
+      <input type="text" id="input-explanation" placeholder="Règle grammaticale ou explication..." />
+    </div>
+    <button class="btn btn-primary btn-xl" id="btn-send-question">▶️ Envoyer la question aux joueurs</button>
+  </div>
+
+  <!-- Live answers panel (shown during question) -->
+  <div class="card answers-panel hidden" id="host-answers-panel">
+    <div class="timer-section">
+      <div class="timer-label">⏱️ Temps restant</div>
+      <div class="timer-display" id="host-timer-display">60</div>
+      <div class="timer-bar-container">
+        <div class="timer-bar" id="host-timer-bar"></div>
+      </div>
+    </div>
+    <h3>📨 Réponses reçues <span id="answers-count">(0/<span id="answers-total">0</span>)</span></h3>
+    <ul class="answers-live-list" id="answers-live-list"></ul>
+  </div>
+
+  <!-- Review panel (shown after all answers or time's up) -->
+  <div class="card review-panel hidden" id="host-review-panel">
+    <div class="correct-answer-display">
+      <div class="label">✅ Réponse correcte :</div>
+      <div class="correct-answer-text" id="display-correct-answer"></div>
+      <div class="explanation-text" id="display-explanation"></div>
+    </div>
+    <h3>⚖️ Valider les réponses</h3>
+    <div class="review-list" id="review-list"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-xl" id="btn-validate">✅ Valider et afficher les scores</button>
+      <button class="btn btn-danger btn-xl" id="btn-end-game">🏁 Terminer la partie</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: PLAYER ANSWER
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-player-answer" class="view">
+  <div class="view-header">
+    <h2 id="player-view-title">En attente d'une question…</h2>
+  </div>
+
+  <!-- Waiting state -->
+  <div id="player-waiting-state">
+    <div class="waiting-animation">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <p class="hint-text">L'hôte prépare la prochaine question…</p>
+    <div class="score-bar" id="player-score-bar"></div>
+  </div>
+
+  <!-- Active question state -->
+  <div id="player-question-state" class="hidden">
+    <div class="timer-section">
+      <div class="timer-display" id="player-timer-display">60</div>
+      <div class="timer-bar-container">
+        <div class="timer-bar" id="player-timer-bar"></div>
+      </div>
+    </div>
+
+    <div class="card question-card">
+      <div class="question-text" id="player-question-text"></div>
+      <div class="hint-box hidden" id="player-hint-box">
+        💡 <span id="player-hint-text"></span>
+      </div>
+    </div>
+
+    <div class="answer-form" id="answer-form">
+      <input type="text" id="player-answer-input" placeholder="Tape ta réponse ici…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+      <button class="btn btn-primary btn-xl" id="btn-submit-answer">📤 Envoyer</button>
+    </div>
+
+    <div class="answer-sent-state hidden" id="answer-sent-state">
+      <div class="sent-icon">✅</div>
+      <p>Réponse envoyée ! En attente des autres joueurs…</p>
+      <div class="sent-answer" id="sent-answer-display"></div>
+    </div>
+  </div>
+
+  <!-- Review waiting state -->
+  <div id="player-review-state" class="hidden">
+    <div class="waiting-animation">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    <p>L'hôte est en train de corriger les réponses…</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: SCORES (intermédiaires)
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-scores" class="view">
+  <div class="view-header">
+    <h2>📊 Scores</h2>
+  </div>
+  <div class="card last-answer-card" id="last-answer-recap"></div>
+  <div class="scores-list" id="scores-list"></div>
+  <div class="btn-row" id="host-next-btn-container"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: FINAL RESULTS
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-final" class="view">
+  <div class="view-header">
+    <h1>🏆 Résultats Finaux</h1>
+  </div>
+  <div class="podium" id="podium"></div>
+  <div class="card difficult-questions" id="difficult-questions-panel">
+    <h3>📚 Notions à retravailler</h3>
+    <div id="difficult-list"></div>
+  </div>
+  <div class="btn-row center">
+    <button class="btn btn-primary" id="btn-play-again">🔄 Rejouer</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     VIEW: REVISION SHEETS (Anti-sèche)
+══════════════════════════════════════════════════════════════════ -->
+<div id="view-sheets" class="view">
+  <div class="view-header">
+    <h1>📖 Fiches de Révision</h1>
+    <button class="btn btn-secondary" id="btn-close-sheets">← Retour</button>
+  </div>
+
+  <div class="sheets-tabs">
+    <button class="tab-btn active" data-tab="verbs">📝 Verbes irréguliers</button>
+    <button class="tab-btn" data-tab="vocab">🔤 Vocabulaire</button>
+    <button class="tab-btn" data-tab="grammar">📐 Grammaire</button>
+    <button class="tab-btn" data-tab="traps">⚠️ Pièges</button>
+  </div>
+
+  <!-- Tab: Irregular Verbs -->
+  <div class="tab-content active" id="tab-verbs">
+    <div class="search-bar-container">
+      <input type="search" id="verb-search" placeholder="🔍 Chercher un verbe…" />
+    </div>
+    <div class="table-wrapper">
+      <table class="verbs-table" id="verbs-table">
+        <thead>
+          <tr>
+            <th>Infinitive</th>
+            <th>Past Simple</th>
+            <th>Past Participle</th>
+            <th>Traduction</th>
+          </tr>
+        </thead>
+        <tbody id="verbs-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab: Vocabulary -->
+  <div class="tab-content hidden" id="tab-vocab">
+    <div class="vocab-categories" id="vocab-categories"></div>
+  </div>
+
+  <!-- Tab: Grammar -->
+  <div class="tab-content hidden" id="tab-grammar">
+    <div id="grammar-sheets-content"></div>
+  </div>
+
+  <!-- Tab: Traps -->
+  <div class="tab-content hidden" id="tab-traps">
+    <div id="traps-content"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TOAST NOTIFICATION
+══════════════════════════════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════════ -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
+</body>
+</html>

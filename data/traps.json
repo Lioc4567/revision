@@ -1,0 +1,107 @@
+[
+  {
+    "id": "t1",
+    "wrong": "He has went to Paris yesterday.",
+    "correct": "He went to Paris yesterday.",
+    "explanation": "'Yesterday' is a specific time marker → Past Simple is required. Present Perfect CANNOT be used with 'yesterday', 'last week', 'ago', 'in 2020', etc.",
+    "rule": "Past Simple vs Present Perfect"
+  },
+  {
+    "id": "t2",
+    "wrong": "She has been to London and she's still there.",
+    "correct": "She has gone to London (and she's still there).",
+    "explanation": "'Has been to' means she went AND came back. 'Has gone to' means she went and hasn't returned yet. Here, she's still in London → use 'gone to'.",
+    "rule": "Been to vs Gone to"
+  },
+  {
+    "id": "t3",
+    "wrong": "I am living here since 2015.",
+    "correct": "I have lived here since 2015.",
+    "explanation": "With 'since' or 'for' describing an ongoing situation that started in the past, use the Present Perfect (not Present Continuous).",
+    "rule": "Present Perfect with since/for"
+  },
+  {
+    "id": "t4",
+    "wrong": "Did you ever visit Rome?",
+    "correct": "Have you ever visited Rome?",
+    "explanation": "'Ever' in questions about life experience requires the Present Perfect, not Past Simple.",
+    "rule": "Ever with Present Perfect"
+  },
+  {
+    "id": "t5",
+    "wrong": "I have already seen him last night.",
+    "correct": "I saw him last night.",
+    "explanation": "'Last night' is a specific past time → Past Simple. Never mix Present Perfect with specific past time expressions.",
+    "rule": "Past Simple vs Present Perfect"
+  },
+  {
+    "id": "t6",
+    "wrong": "He went to three countries so far.",
+    "correct": "He has been to three countries so far.",
+    "explanation": "'So far' indicates an unfinished period of time (up to now) → Present Perfect required.",
+    "rule": "So far with Present Perfect"
+  },
+  {
+    "id": "t7",
+    "wrong": "I didn't see him yet.",
+    "correct": "I haven't seen him yet.",
+    "explanation": "'Yet' in negative sentences requires the Present Perfect, not Past Simple.",
+    "rule": "Yet with Present Perfect"
+  },
+  {
+    "id": "t8",
+    "wrong": "She just arrived. (using Past Simple: She just arrived)",
+    "correct": "She has just arrived.",
+    "explanation": "'Just' (meaning 'a moment ago') requires the Present Perfect in British English.",
+    "rule": "Just with Present Perfect"
+  },
+  {
+    "id": "t9",
+    "wrong": "They are friends since they were children.",
+    "correct": "They have been friends since they were children.",
+    "explanation": "Ongoing state from the past to now with 'since' → Present Perfect (not Present Simple).",
+    "rule": "Present Perfect with since"
+  },
+  {
+    "id": "t10",
+    "wrong": "I am studying English for 3 years.",
+    "correct": "I have been studying English for 3 years.",
+    "explanation": "Continuous action from past to present with 'for' → Present Perfect Continuous.",
+    "rule": "Present Perfect Continuous with for"
+  },
+  {
+    "id": "t11",
+    "wrong": "He is gone to work. He'll be back at 6.",
+    "correct": "He has gone to work. He'll be back at 6.",
+    "explanation": "'Has/have gone to' = went and is still there. Use 'has' not 'is' for Present Perfect.",
+    "rule": "Gone to — auxiliary"
+  },
+  {
+    "id": "t12",
+    "wrong": "Did you finish your homework already?",
+    "correct": "Have you finished your homework already?",
+    "explanation": "'Already' in questions expresses surprise and requires the Present Perfect.",
+    "rule": "Already with Present Perfect"
+  },
+  {
+    "id": "t13",
+    "wrong": "I have bought this car in 2019.",
+    "correct": "I bought this car in 2019.",
+    "explanation": "'In 2019' is a specific year → Past Simple. Never use Present Perfect with a specific year.",
+    "rule": "Past Simple with specific year"
+  },
+  {
+    "id": "t14",
+    "wrong": "He never went abroad in his life.",
+    "correct": "He has never been abroad (in his life).",
+    "explanation": "Life experience without specific time → Present Perfect + 'been' (not 'went').",
+    "rule": "Never with Present Perfect"
+  },
+  {
+    "id": "t15",
+    "wrong": "Since how long are you learning English?",
+    "correct": "How long have you been learning English?",
+    "explanation": "'How long' + ongoing action → Present Perfect Continuous. 'Since how long' is a French calque — not used in English.",
+    "rule": "How long + Present Perfect Continuous"
+  }
+]
